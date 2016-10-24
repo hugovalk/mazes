@@ -1,8 +1,8 @@
 import com.devdiscoveries.mazes._
-import com.devdiscoveries.mazes.algorithms.{AldousBroder, BinaryTree}
+import com.devdiscoveries.mazes.algorithms.{AldousBroder, BinaryTree, Sidewinder, Wilsons}
 
-val maze = new Maze(40, 40)
+val maze = new Maze(10, 10)
   with SquareGrid
-  with AldousBroder
+  with Sidewinder
 
 maze.printMaze

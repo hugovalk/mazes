@@ -10,12 +10,12 @@ import scala.util.Random
 trait Sidewinder extends MazeAlgorithm {
   this: Grid =>
 
-  override val links: Seq[(Cell, Cell)] =
+  override val links: Seq[Link] =
     rows.flatMap { row =>
       def shouldCloseRun(cell: Cell) =
         eastOf(cell).isEmpty || (!northOf(cell).isEmpty && Random.nextBoolean())
 
-      def linksFromRun(run: Seq[Cell]): List[(Cell, Cell)] = {
+      def linksFromRun(run: Seq[Cell]): List[Link] = {
         val links = run.toList.reverse.tail.map(cell => (cell, eastOf(cell).get))
         val cellToLinkWithNorth = run(Random.nextInt(run.size))
         northOf(cellToLinkWithNorth)
@@ -23,15 +23,14 @@ trait Sidewinder extends MazeAlgorithm {
             .getOrElse(links)
       }
 
-      def doRun(current: Seq[Cell]): List[(Cell, Cell)] = {
-        if (current.isEmpty) {
-          List()
-        } else {
+      def doRun(current: Seq[Cell], results: List[Link]): List[Link] = {
+        if (current.isEmpty) results
+        else {
           val runSize = current.takeWhile(cell => !shouldCloseRun(cell)).size + 1
-          doRun(current.drop(runSize)) ++ linksFromRun(current.take(runSize))
+          doRun(current.drop(runSize), linksFromRun(current.take(runSize)) ++ results)
         }
       }
-      doRun(row)
+      doRun(row, List())
     }
 
 }

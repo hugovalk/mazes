@@ -10,11 +10,10 @@ import scala.util.Random
 trait AldousBroder extends MazeAlgorithm {
   this: Grid =>
 
-  override val links: Seq[(Cell, Cell)] = {
-    def loop(currentCell: Cell, visited: Set[Cell], result: List[(Cell, Cell)]): List[(Cell, Cell)] = {
-      if (visited.size == cells.size) {
-        result
-      } else {
+  override val links: Seq[Link] = {
+    def loop(currentCell: Cell, visited: Set[Cell], result: List[Link]): List[Link] = {
+      if (visited.size == cells.size) result
+      else {
         val _neighbours = neighbors(currentCell)
         val next = _neighbours(Random.nextInt(_neighbours.size))
         visited.contains(next) match {
