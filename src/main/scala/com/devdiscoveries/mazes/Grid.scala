@@ -1,7 +1,5 @@
 package com.devdiscoveries.mazes
 
-import scala.util.Random
-
 sealed trait Grid {
   def nrows: Int
   def ncols: Int
@@ -27,20 +25,6 @@ trait SquareGrid extends Grid {
   def apply(row: Int, col: Int): Option[Cell] =
       _cells.applyOrElse(row - 1, (e: Int) => Vector[Option[Cell]]())
           .applyOrElse(col - 1, (e:Int) => None)
-
-  def randomCell: Cell = {
-    val row = Random.nextInt(nrows) + 1
-    val col = Random.nextInt(ncols) + 1
-    apply(row, col).get
-  }
-
-  def size: Int = nrows * ncols
-
-  def foreachRow[U](f: Vector[Option[Cell]] => U) =
-    _cells.foreach(f)
-
-  def foreach[U](f: Cell => U) =
-    _cells.flatten.foreach(someCell => f(someCell.get))
 
   def cells: Seq[Cell] = _cells.flatten.map(_.get)
 

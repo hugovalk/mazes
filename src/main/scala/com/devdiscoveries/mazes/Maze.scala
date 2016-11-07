@@ -1,13 +1,10 @@
 package com.devdiscoveries.mazes
 
-import java.awt.{BasicStroke, Color}
 import java.awt.image.BufferedImage
+import java.awt.{BasicStroke, Color}
 
 import com.devdiscoveries.mazes.algorithms.MazeAlgorithm
 
-/**
-  * Created by hugovalk on 19-10-16.
-  */
 class Maze(val nrows: Int, val ncols: Int) {
   this: MazeAlgorithm with Grid =>
 
@@ -25,7 +22,7 @@ class Maze(val nrows: Int, val ncols: Int) {
       "---"
     }
 
-  def printMaze = {
+  def printMaze() = {
     println("+" + "---+" * ncols)
     rows.foreach{ row =>
       print("|")
@@ -64,6 +61,4 @@ class Maze(val nrows: Int, val ncols: Int) {
 
     image
   }
-
-  def save = ???
 }

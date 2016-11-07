@@ -13,7 +13,7 @@ trait Sidewinder extends MazeAlgorithm {
   override lazy val links: Seq[Link] =
     rows.flatMap { row =>
       def shouldCloseRun(cell: Cell) =
-        eastOf(cell).isEmpty || (!northOf(cell).isEmpty && Random.nextBoolean())
+        eastOf(cell).isEmpty || (northOf(cell).isDefined && Random.nextBoolean())
 
       def linksFromRun(run: Seq[Cell]): List[Link] = {
         val links = run.toList.reverse.tail.map(cell => (cell, eastOf(cell).get))

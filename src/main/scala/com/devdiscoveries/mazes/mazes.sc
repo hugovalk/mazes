@@ -5,9 +5,9 @@ import com.devdiscoveries.mazes._
 import com.devdiscoveries.mazes.algorithms.{AldousBroder, BinaryTree, Sidewinder, Wilsons}
 import com.devdiscoveries.mazes.solvers.Dijkstra
 
-val maze = new Maze(5, 5)
-  with SquareGrid
+val maze = new Maze(10, 10)
   with AldousBroder
+  with SquareGrid
   with Dijkstra
 
 maze.printMaze
@@ -20,6 +20,6 @@ maze.rows.foreach{row =>
 
 val image = maze.
   renderMaze(50)
-val path = "/home/hugovalk/projects/mazes/test.png"
+val path = "/home/hugovalk/projects/mazes/target/test.png"
 val file = new File(path)
-//ImageIO.write(image, "PNG", file)
+ImageIO.write(image, "PNG", file)
