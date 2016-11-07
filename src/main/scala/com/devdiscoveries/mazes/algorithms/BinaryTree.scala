@@ -10,7 +10,7 @@ import scala.util.Random
 trait BinaryTree extends MazeAlgorithm {
   this: Grid =>
 
-  override val links: Seq[Link] =
+  override lazy val links: Seq[Link] =
     cells.map{ cell =>
       val neighbor = List(northOf(cell), eastOf(cell)).filter(_.isDefined).map(_.get) match {
         case List() => None

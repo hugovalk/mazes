@@ -10,7 +10,7 @@ import scala.util.Random
 trait Wilsons extends MazeAlgorithm {
   this: Grid =>
 
-  override val links: Seq[Link] = {
+  override lazy val links: Seq[Link] = {
     def loop(unvisited: List[Cell], results: List[Link]): List[Link] = {
       if (unvisited.isEmpty) results
       else {

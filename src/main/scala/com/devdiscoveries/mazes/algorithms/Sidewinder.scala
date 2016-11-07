@@ -10,7 +10,7 @@ import scala.util.Random
 trait Sidewinder extends MazeAlgorithm {
   this: Grid =>
 
-  override val links: Seq[Link] =
+  override lazy val links: Seq[Link] =
     rows.flatMap { row =>
       def shouldCloseRun(cell: Cell) =
         eastOf(cell).isEmpty || (!northOf(cell).isEmpty && Random.nextBoolean())

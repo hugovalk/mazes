@@ -2,9 +2,6 @@ package com.devdiscoveries.mazes.algorithms
 
 import com.devdiscoveries.mazes.{Cell, Grid}
 
-/**
-  * Created by hugovalk on 19-10-16.
-  */
 trait MazeAlgorithm {
   this: Grid =>
   type Link = (Cell, Cell)
